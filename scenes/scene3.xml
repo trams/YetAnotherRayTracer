@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone=no>
+<scene>
+    <materials>
+        <material name="DullWhite" color="1.0 1.0 1.0" diffuse="1.0" />
+        <material name="Green" color="0.0 1.0 0.0" diffuse="0.3" reflection="0.7" />
+        <material name="Red" color="1.0 0.0 0.0" diffuse="0.3" reflection="0.7" />
+    </materials>
+    <primitives>
+        <ball radius="1.0" center="-1.5 0.0 4.0" islight="false" materialname="Green" />
+        <ball radius="1.0" center="1.5 0.0 4.0" islight="false" materialname="Red" />
+
+        <ball radius="0.00001" center="0.0 0.0 2.0" islight="true" materialname="DullWhite" />
+        <ball radius="0.00001" center="0.0 0.0 3.0" islight="true" materialname="DullWhite" />
+        <ball radius="0.00001" center="0.0 0.0 4.0" islight="true" materialname="DullWhite" />
+        <ball radius="0.00001" center="0.0 0.0 5.0" islight="true" materialname="DullWhite" />
+        <ball radius="0.00001" center="0.0 0.0 6.0" islight="true" materialname="DullWhite" />
+    </primitives>
+</scene>

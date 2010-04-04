@@ -1,0 +1,10 @@
+<?xml version="1.0" standalone=no>
+<ints>
+  <int value="1" />
+  <int value="2" />
+  <int value="4" />
+  <int value="8" />
+  <int value="16" />
+  <int value="32" />
+  <int value="64" />
+</ints>

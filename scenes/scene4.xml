@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone=no>
+<scene>
+    <materials>
+        <material name="LightWhite" color="0.9 0.9 0.9" diffuse="1.0" />
+        <material name="White" color="1.0 1.0 1.0" diffuse="0.0" reflection="1.0" />
+        <material name="Green" color="0.0 1.0 0.0" diffuse="0.1" reflection="0.9" />
+        <material name="Red" color="1.0 0.0 0.0" diffuse="0.1" reflection="0.9" />
+        
+        <material name="DullWhite" color="0.7 0.7 0.7" diffuse="1.0" reflection="0.0" />
+        <material name="DullGreen" color="0.0 0.7 0.0" diffuse="1.0" reflection="0.0" />
+        <material name="DullRed" color="0.7 0.0 0.0" diffuse="1.0" reflection="0.0" />
+        <material name="DullBlue" color="0.0 0.0 0.7" diffuse="1.0" reflection="0.0" />                
+    </materials>
+    <primitives>
+        <ball radius="1.0" center="-1.0 0.0 8.0" islight="false" materialname="White" />
+        
+        <parallelogram islight="false" materialname="DullWhite" point="0.0 0.0 10.0" normal="0.0 0.0 1.0"
+        	e1="1.0 0.0 0.0" e2="0.0 1.0 0.0" length1="6.0" length2="6.0" area="1" name="front"/>
+
+        <parallelogram islight="false" materialname="DullRed" point="-3.0 0.0 6.0" normal="-1.0 0.0 0.0"
+        	e1="0.0 1.0 0.0" e2="0.0 0.0 1.0" length1="6.0" length2="8.0" area="1" name="left" />
+
+        <parallelogram islight="false" materialname="DullGreen" point="3.0 0.0 6.0" normal="1.0 0.0 0.0"
+        	e1="0.0 1.0 0.0" e2="0.0 0.0 1.0" length1="6.0" length2="8.0" area="1" name="right" />
+
+        <parallelogram islight="false" materialname="DullWhite" point="0.0 -3.0 6.0" normal="0.0 -1.0 0.0"
+        	e1="1.0 0.0 0.0" e2="0.0 0.0 1.0" length1="6.0" length2="8.0" area="1" />
+
+        <parallelogram islight="false" materialname="DullWhite" point="0.0 3.0 6.0" normal="0.0 1.0 0.0"
+        	e1="1.0 0.0 0.0" e2="0.0 0.0 1.0" length1="6.0" length2="8.0" area="1" name="ceiling"/>
+        	
+        <parallelogram islight="true" materialname="LightWhite" point="0.0 2.99 6.0" normal="0.0 1.0 0.0"
+        	e1="1.0 0.0 0.0" e2="0.0 0.0 1.0" length1="0.6" length2="0.8" area="250" name="lamp" />   
+    </primitives>
+</scene>
