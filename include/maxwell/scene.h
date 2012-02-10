@@ -7,20 +7,20 @@
 class Scene
 {
 public:
-	typedef std::vector<Primitive*>::iterator Iterator;
-	typedef std::vector<Primitive*>::const_iterator ConstIterator;
+    typedef std::vector<Primitive*>::iterator Iterator;
+    typedef std::vector<Primitive*>::const_iterator ConstIterator;
 
-	Iterator Begin();
-	ConstIterator Begin() const;
-	Iterator End();
-	ConstIterator End() const;
+    Iterator Begin();
+    ConstIterator Begin() const;
+    Iterator End();
+    ConstIterator End() const;
 
-	void Add(Primitive* primitive);
-	void LoadFromFile(const std::string& filename);
+    void Add(Primitive* primitive);
+    void LoadFromFile(const std::string& filename);
 
-	Scene();
+    Scene();
 private:
-	std::vector<Primitive*> m_primitives;
+    std::vector<Primitive*> m_primitives;
 };
 
 #endif /*SCENE_H_*/
