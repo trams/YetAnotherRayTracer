@@ -3,6 +3,7 @@ if (BUILD_TESTS)
 
     add_executable(utest EXCLUDE_FROM_ALL
         commonTest.cc
+	intersectionTest.cc
 	utest.cpp
         )
     target_link_libraries(utest
