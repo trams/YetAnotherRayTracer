@@ -19,25 +19,25 @@ protected:
 public:
 	virtual int GetIntersection(Ray r, double* distance) const = 0;
 	virtual Vector3 GetNormal(Vector3 point) const = 0;
-	
-	virtual Material GetMaterial() const 
-	{ 
-		return m_material; 
+
+	virtual Material GetMaterial() const
+	{
+		return m_material;
 	}
-	
-	virtual bool IsIlluminative() const 
-	{ 
-		return m_isIlluminative; 
+
+	virtual bool IsIlluminative() const
+	{
+		return m_isIlluminative;
 	}
-	
-	virtual const std::string& GetName() const 
-	{ 
-		return m_name; 
+
+	virtual const std::string& GetName() const
+	{
+		return m_name;
 	}
-	
+
 	virtual ~Primitive()
 	{}
-	
+
 	Primitive(Material a_material, bool a_isLight, const std::string& a_name)
 		: m_material(a_material), m_isIlluminative(a_isLight), m_name(a_name)
 	{}

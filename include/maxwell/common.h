@@ -19,13 +19,13 @@ class Vector3
 {
 public:
 	Vector3() : x(.0), y(.0), z(.0) {};
-	Vector3( double a_X, double a_Y, double a_Z ) : x( a_X ), y( a_Y ), z( a_Z ) 
+	Vector3( double a_X, double a_Y, double a_Z ) : x( a_X ), y( a_Y ), z( a_Z )
 	{};
-	
-	Vector3& Normalize() 
-	{ 
+
+	Vector3& Normalize()
+	{
 		double l = 1.0 / Length(); x *= l; y *= l; z *= l;
-		return *this; 
+		return *this;
 	}
 	double SqrLength() const { return x * x + y * y + z * z; }
 	double Length() const { return sqrt(SqrLength()); }
@@ -53,7 +53,7 @@ public:
 		stream >> v.x >> v.y >> v.z;
 		return stream;
 	}
-	 
+
 	union
 	{
 		struct { double x, y, z; };
@@ -72,11 +72,11 @@ inline double Dot(Vector3 a, Vector3 b)
 inline Vector3 readVector(const char* str)
 {
 	Vector3 v;
-	
+
 	std::istringstream stream(str);
 	stream >> v;
-	
-	return v;	
+
+	return v;
 }
 
 #endif

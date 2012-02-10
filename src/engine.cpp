@@ -4,18 +4,18 @@
 #include <string>
 #include <sstream>
 
-void findNearsetIntersection(const Scene& scene, const Ray ray, 
+void findNearsetIntersection(const Scene& scene, const Ray ray,
 							Primitive const* * primitive, double* distance, int* intersectionType)
 {
 	*primitive = NULL;
 	double d = 0;
 	double minDistance = 0;
 	int code = 0;
-	
+
 	for (Scene::ConstIterator it = scene.Begin(); it != scene.End(); it++)
 	{
 		const Primitive* p = (*it);
-		
+
 		int someCode = p->GetIntersection(ray, &d);
 		if (someCode != 0)
 		{
@@ -27,12 +27,12 @@ void findNearsetIntersection(const Scene& scene, const Ray ray,
 			}
 		}
 	}
-	
+
 	if (distance != NULL)
 	{
 		*distance = minDistance;
 	}
-	
+
 	if (intersectionType != NULL)
 	{
 		*intersectionType = code;
@@ -42,17 +42,17 @@ void findNearsetIntersection(const Scene& scene, const Ray ray,
 //Get intensity of light from this element in particular point of the scene.
 //`place` is a point in which intensity is calculated
 //`n` is a normal vector at the `place` point
-//`scene` is a scene 
+//`scene` is a scene
 double getIntensity(const Primitive* element, Vector3 place, Vector3 n, const Scene& scene)
 {
 	if (element->IsIlluminative())
 	{
 		const Illuminative* light = dynamic_cast<const Illuminative*>(element);
 		assert(light != NULL);
-		
+
 		const int count = light->GetArea();
 		double intensity = 0;
-		
+
 		for (int i = 0; i < count; i++)
 		{
 			const Vector3 l = (light->GetRandomPoint() - place).Normalize();
@@ -62,14 +62,14 @@ double getIntensity(const Primitive* element, Vector3 place, Vector3 n, const Sc
 				const Primitive* nearest = NULL;
 				double distanceToNearest = 0;
 				findNearsetIntersection(scene, Ray(place, l), &nearest, &distanceToNearest, NULL);
-					
+
 				if (nearest == element)
 					intensity += dot;
 			}
 		}
 		return (intensity / count);
 	}
-	
+
 	return .0;
 }
 
@@ -79,24 +79,24 @@ Color trace(const Scene& scene, Ray ray, int depth)
 	const int maxDepth = 3;
 	if (depth >= maxDepth)
 		return background;
-	
+
 	Color color(0,0,0);
 	double distance = 0;
 	const Primitive* prim = NULL;
 	int intersectionType = 0;
-	
+
 	findNearsetIntersection(scene, ray, &prim, &distance, &intersectionType);
-	
+
 	if (prim != NULL)
 	{
 		if (prim->IsIlluminative())
 		{
 			return prim->GetMaterial().GetColor();
 		}
-		
+
 		const Vector3 intersectionPoint = ray.GetPoint(distance);
 		const Vector3 n = prim->GetNormal(intersectionPoint);
-		
+
 		if (prim->GetMaterial().GetDiffuse() > 0)
 		{
 			for (Scene::ConstIterator it = scene.Begin(); it != scene.End(); it++)
@@ -107,7 +107,7 @@ Color trace(const Scene& scene, Ray ray, int depth)
 				{
 					Vector3 x = (prim->GetMaterial().GetColor());
 					Vector3 y = ((*it)->GetMaterial().GetColor());
-					
+
 					color = color + (intensive * prim->GetMaterial().GetDiffuse()) * x * y;
 				}
 			}
@@ -117,38 +117,38 @@ Color trace(const Scene& scene, Ray ray, int depth)
 		{
 			const Vector3 x = ray.GetDirection();
 			const Vector3 y = intersectionType * (-n);
-			
+
 			double n;
 			if (intersectionType == IntersectOutside)
 				n = 1.0 / prim->GetMaterial().GetRefractionRate();
 			else
 				n = prim->GetMaterial().GetRefractionRate();
-			
+
 			const double sin_1 = sqrt(1 - Dot(x,y));
 			const double sin_2 = n * sin_1;
-			
+
 			if (sin_2 < 1)
 			{
 				const double cos_2 = sqrt(1 - sin_2);
 				Vector3 xPerpendicular = x - Dot(x,y)*y;
 				Vector3 z = cos_2 * y + sin_2 * xPerpendicular;
 				z.Normalize();
-				
+
 				if (prim->GetMaterial().GetRefraction() > 0)
 				{
 					if (intersectionType == IntersectInside)
 					{
-						color = color + 
-							prim->GetMaterial().GetRefraction() * 
-							exp(-prim->GetMaterial().GetAbsorptionRate()*distance) * 
+						color = color +
+							prim->GetMaterial().GetRefraction() *
+							exp(-prim->GetMaterial().GetAbsorptionRate()*distance) *
 							trace(scene, Ray(intersectionPoint, z), depth + 1);
 					}
-					else 
-						color = color + 
+					else
+						color = color +
 						    prim->GetMaterial().GetRefraction() * trace(scene, Ray(intersectionPoint, z), depth + 1);
 				}
 			}
-		}			
+		}
 
 		//reflection
 		if (prim->GetMaterial().GetReflection() > 0)
@@ -159,7 +159,7 @@ Color trace(const Scene& scene, Ray ray, int depth)
 		}
 	}
 	return color;
-} 
+}
 
 Engine::Engine()
 	:m_screen(Width, Height)
@@ -177,7 +177,7 @@ void Engine::Calculate()
 	const double cellWidth = 0.005;
 	const double cellHeight = 0.005;
 	const Vector3 origin(0.0,0.0,-5.0);
-	
+
 	for (int i = 0; i < Width; i++)
 	{
 		for (int j = 0; j < Height; j++)
@@ -186,14 +186,14 @@ void Engine::Calculate()
 			a.x = 1.0 * cellWidth * (i - Width/2);
 			a.y = -1.0 * cellHeight * (j - Height/2);
 			a.z = 0.0;
-			
+
 			a = a - origin;
 			a.Normalize();
-			
+
 			Ray ray(origin, a);
 			m_image[i][j] = trace(m_scene, ray, 0);
 			m_progress++;
-			
+
 			int part = (m_progress*100/max);
 			if (part*max == (m_progress*100))
 			{
@@ -215,7 +215,7 @@ void Engine::Draw()
 		{
 			m_screen.SetPixel(i,j,m_image[i][j]);
 		}
-	
+
 	m_screen.Flip();
 }
 

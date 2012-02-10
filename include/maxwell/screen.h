@@ -14,7 +14,7 @@ public:
 
 	Screen(int width, int height);
 	~Screen();
-	
+
 	void SetPixel(int x, int y, Color color);
 	void SetCaption(const std::string caption);
 	void Flip();

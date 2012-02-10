@@ -16,9 +16,9 @@ public:
 	double GetReflection() const { return m_reflection; }
 	double GetRefraction() const { return 1.0 - (m_diffuse + m_reflection); }
 	double GetRefractionRate() const { return m_refractionRate; }
-	double GetAbsorptionRate() const { return m_absorptionRate; }	
-	Color GetColor() const { return m_color; }	
-	
+	double GetAbsorptionRate() const { return m_absorptionRate; }
+	Color GetColor() const { return m_color; }
+
 	Material()
 	{
 		m_diffuse = 1.0;
@@ -26,9 +26,9 @@ public:
 		m_refractionRate = 1.0;
 		m_absorptionRate = 0.0;
 	}
-	
-	Material(Color a_color, double a_diffuse, 
-			double a_reflection = 0.0, 
+
+	Material(Color a_color, double a_diffuse,
+			double a_reflection = 0.0,
 			double a_refractionRate = 1.0,
 			double a_absorptionRate = 0.0)
 	{

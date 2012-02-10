@@ -19,7 +19,7 @@ public:
 	void Calculate();
 	void Draw();
 	void WaitForQuit();
-	
+
 	Engine();
 	~Engine();
 };
