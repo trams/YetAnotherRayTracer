@@ -1,4 +1,4 @@
-#include "plane.h"
+#include <maxwell/primitives/plane.h>
 
 const double planeWidth = EPSILON;
 

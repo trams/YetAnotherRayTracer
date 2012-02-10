@@ -1,0 +1,14 @@
+*.so*
+
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+CMakeCache.txt
+include/maxwell/config.h
+
+Makefile
+
+src/render
+tests/utest
+
+*~

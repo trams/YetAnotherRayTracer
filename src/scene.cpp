@@ -1,9 +1,9 @@
-#include "scene.h"
+#include <maxwell/scene.h>
 
-#include "tinyxml/tinyxml.h"
-#include "primitives/ball.h"
-#include "primitives/plane.h"
-#include "primitives/parallelogram.h"
+#include <tinyxml/tinyxml.h>
+#include <maxwell/primitives/ball.h>
+#include <maxwell/primitives/plane.h>
+#include <maxwell/primitives/parallelogram.h>
 
 #include <string>
 #include <sstream>

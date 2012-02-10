@@ -1,4 +1,4 @@
-#include "parallelogram.h"
+#include <maxwell/primitives/parallelogram.h>
 
 int Parallelogram::GetIntersection(Ray r, double* distance) const
 {

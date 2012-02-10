@@ -1,4 +1,4 @@
-#include "screen.h"
+#include <maxwell/screen.h>
 #include <SDL/SDL.h>
 
 int min(int x, int y)

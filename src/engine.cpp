@@ -1,5 +1,5 @@
-#include "primitives/illuminative.h"
-#include "engine.h"
+#include <maxwell/primitives/illuminative.h>
+#include <maxwell/engine.h>
 #include <SDL/SDL.h>
 #include <string>
 #include <sstream>

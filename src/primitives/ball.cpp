@@ -1,4 +1,4 @@
-#include "ball.h"
+#include <maxwell/primitives/ball.h>
 
 int Ball::GetArea() const
 {
