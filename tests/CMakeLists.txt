@@ -5,6 +5,7 @@ if (BUILD_TESTS)
         commonTest.cc
 	intersectionTest.cc
 	rayTest.cc
+	tiXmlTest.cc
 	utest.cpp
         )
     target_link_libraries(utest
