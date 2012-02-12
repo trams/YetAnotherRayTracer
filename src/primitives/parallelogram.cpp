@@ -2,8 +2,8 @@
 
 int Parallelogram::GetIntersection(Ray r, double* distance) const
 {
-    assert( fabs(m_e1.SqrLength() - 1) < EPSILON  );
-    assert( fabs(m_e2.SqrLength() - 1) < EPSILON  );
+    assert( fabs(m_e1.SqrLength() - 1) < Vector3::epsilon  );
+    assert( fabs(m_e2.SqrLength() - 1) < Vector3::epsilon  );
 
     double dist;
     int result = Plane::GetIntersection(r, &dist);

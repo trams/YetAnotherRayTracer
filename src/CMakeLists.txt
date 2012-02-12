@@ -1,6 +1,7 @@
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 add_library(maxwell SHARED
+    common.cpp
     engine.cpp
     scene.cpp
     screen.cpp

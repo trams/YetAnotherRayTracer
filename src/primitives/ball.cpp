@@ -12,7 +12,7 @@ Vector3 Ball::GetRandomPoint() const
 
 int Ball::GetIntersection(Ray r, double* distance) const
 {
-    assert( fabs(r.GetDirection().Length() - 1) < EPSILON  );
+    assert( fabs(r.GetDirection().Length() - 1) < Vector3::epsilon  );
 
     double t = Dot(m_center - r.GetOrigin(), r.GetDirection());
 
@@ -25,11 +25,11 @@ int Ball::GetIntersection(Ray r, double* distance) const
     double result = t - sqrt(m_radius*m_radius - sqrDist);
     double result2 = t + sqrt(m_radius*m_radius - sqrDist);
 
-    if (result2 < EPSILON)
+    if (result2 < Vector3::epsilon)
         return DontIntersect;
     else
     {
-        if (result < EPSILON)
+        if (result < Vector3::epsilon)
         {
             *distance = result2;
             return IntersectInside;

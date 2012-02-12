@@ -81,6 +81,6 @@ TEST_CASE("VectorTest/Normalize", "")
         Vector3 a(rand(), rand(), rand());
         a.Normalize();
 
-        REQUIRE(fabs(a.Length() - 1.0)< EPSILON);
+        REQUIRE(Approx(a.Length()) == 1.0);
     }
 }

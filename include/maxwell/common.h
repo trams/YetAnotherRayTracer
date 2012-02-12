@@ -13,8 +13,6 @@
 #include <iostream>
 #include <sstream>
 
-#define EPSILON 0.0001
-
 class Vector3
 {
 public:
@@ -130,6 +128,8 @@ public:
         struct { double r, g, b; };
         struct { double cell[3]; };
     };
+
+    static const double epsilon;
 };
 
 typedef Vector3 Color;

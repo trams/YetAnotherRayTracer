@@ -1,20 +1,20 @@
 #include <maxwell/primitives/plane.h>
 
-const double planeWidth = EPSILON;
+const double planeWidth = Vector3::epsilon;
 
 int Plane::GetIntersection(Ray r, double* distance) const
 {
-    assert( fabs(r.GetDirection().Length() - 1) < EPSILON  );
+    assert( fabs(r.GetDirection().Length() - 1) < Vector3::epsilon  );
 
     double dot = Dot(m_normal, r.GetDirection());
 
-    if (fabs(dot) < EPSILON)
+    if (fabs(dot) < Vector3::epsilon)
         return DontIntersect;
 
     double dot2 = Dot((m_origin - r.GetOrigin()), m_normal);
     double t = (dot2 / dot);
 
-    if (t < EPSILON)
+    if (t < Vector3::epsilon)
         return DontIntersect;
 
     double dt = planeWidth / dot;
