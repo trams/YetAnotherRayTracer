@@ -19,6 +19,14 @@ int randRange(int min, int max)
     return trunc(result);
 }
 
+TEST_CASE("VectorTest/Constructor", "")
+{
+    Vector3 v1(0.0, 0.0, 0.0);
+    Vector3 v2;
+
+    REQUIRE(v1 == v2);
+}
+
 
 TEST_CASE("VectorTest/Operators", "")
 {
