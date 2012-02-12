@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 2.6)
 set(CMAKE_CPP_FLAGS_RELEASE  "-DNDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE  " -g -O2")
 set(CMAKE_CXX_FLAGS_DEBUG    " -g -O0")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wconversion -Wcast-qual -fexceptions -pthread -fpic -pipe")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++11 -Wall -Wextra -Wconversion -Wcast-qual -fexceptions -pthread -pipe")
 
 # we can't install to /etc with prefix /usr
 # without hacks, so we provide CMAKE_INSTALL_SYSCONFDIR
