@@ -2,11 +2,11 @@ if (BUILD_TESTS)
     include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
     add_executable(utest EXCLUDE_FROM_ALL
-        commonTest.cc
-	intersectionTest.cc
-	rayTest.cc
-	tiXmlTest.cc
-	utest.cpp
+        t_common.cc
+	t_intersection.cc
+	t_ray.cc
+	t_load.cc
+	utest.cc
         )
     target_link_libraries(utest
         maxwell
