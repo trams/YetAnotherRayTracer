@@ -24,4 +24,7 @@ public:
     ~Engine();
 };
 
+void findNearsetIntersection(const Scene& scene, const Ray ray,
+			     Primitive const* * primitive, double* distance, int* intersectionType);
+
 #endif /*ENGINE_H_*/

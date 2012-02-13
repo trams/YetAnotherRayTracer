@@ -6,6 +6,7 @@ if (BUILD_TESTS)
 	t_intersection.cc
 	t_ray.cc
 	t_load.cc
+	t_scene.cc
 	utest.cc
         )
     target_link_libraries(utest
