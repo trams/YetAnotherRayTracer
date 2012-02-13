@@ -8,7 +8,7 @@ struct NearestIntersection
 {
     const Primitive* primitive;
 
-    IntersectionPoint intersection;
+    RayIntersectionPoint intersection;
 };
 
 NearestIntersection findNearestIntersection(const Scene& scene, const Ray& ray)
@@ -18,12 +18,12 @@ NearestIntersection findNearestIntersection(const Scene& scene, const Ray& ray)
 
     for (Scene::ConstIterator it = scene.Begin(); it != scene.End(); it++)
     {
-	IntersectionPoint intersection = (*it)->getIntersection(ray);
+	RayIntersectionPoint intersection = (*it)->getIntersection(ray);
 
         if (!intersection.isNull())
         {
-	    double distance = intersection.getDistanceFromOrigin(ray);
-	    double minDistance = result.intersection.getDistanceFromOrigin(ray);
+	    double distance = intersection.getDistance();
+	    double minDistance = result.intersection.getDistance();
             if ((result.primitive == NULL) || (distance < minDistance))
             {
 		result.intersection = intersection;
@@ -41,7 +41,7 @@ void findNearsetIntersection(const Scene& scene, const Ray ray,
 
     if (distance != NULL)
     {
-        *distance = result.intersection.getDistanceFromOrigin(ray);
+        *distance = result.intersection.getDistance();
     }
 
     if (intersectionType != NULL)

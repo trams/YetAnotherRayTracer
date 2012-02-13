@@ -1,12 +1,11 @@
 #include <maxwell/primitives/primitive.h>
 
-IntersectionPoint Primitive::getIntersection(const Ray& ray) const
+RayIntersectionPoint Primitive::getIntersection(const Ray& ray) const
 {
-    IntersectionPoint result;
-    double distance;
+    RayIntersectionPoint result;
+    result.m_ray = ray;
 
-    result.m_intersectionType = GetIntersection(ray, &distance);
-    result.m_point = ray.GetPoint(distance);
+    result.m_intersectionType = GetIntersection(ray, &result.m_distance);
 
     return result;
 }

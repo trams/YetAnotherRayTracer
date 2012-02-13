@@ -10,14 +10,16 @@ static const int DontIntersect = 0;
 static const int IntersectOutside = 1;
 static const int IntersectInside = -1;
 
-struct IntersectionPoint
+struct RayIntersectionPoint
 {
     int m_intersectionType;
-    Vector3 m_point;
+    Ray m_ray;
+    double m_distance;
 
-    IntersectionPoint():
+    RayIntersectionPoint():
         m_intersectionType(0),
-        m_point(0.0, 0.0, 0.0)
+        m_ray(Vector3(), Vector3()),
+	m_distance(0.0)
     {}
 
     bool isNull() const
@@ -25,9 +27,9 @@ struct IntersectionPoint
 	return (m_intersectionType == DontIntersect);
     }
 
-    double getDistanceFromOrigin(const Ray& ray) const
+    double getDistance() const
     {
-	return (m_point - ray.GetOrigin()).Length();
+	return m_distance;
     }
 };
 
@@ -39,7 +41,7 @@ protected:
     const std::string m_name;
 public:
     virtual int GetIntersection(Ray r, double* distance) const = 0;
-    virtual IntersectionPoint getIntersection(const Ray& ray) const;
+    virtual RayIntersectionPoint getIntersection(const Ray& ray) const;
 
     virtual Vector3 GetNormal(Vector3 point) const = 0;
 
