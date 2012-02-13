@@ -6,6 +6,7 @@ add_library(maxwell SHARED
     scene.cpp
     screen.cpp
     text_screen.cpp
+    sdl_screen.cc
     primitives/primitive.cpp
     primitives/ball.cpp
     primitives/illuminative.cpp

@@ -1,4 +1,5 @@
 #include <maxwell/engine.h>
+#include <maxwell/sdl_screen.h>
 #include <stdio.h>
 
 int main(int argc, char** argv)
