@@ -11,7 +11,6 @@ int main(int argc, char** argv)
         engine.Init(argv[1]);
         engine.Calculate();
         engine.Draw();
-        engine.WaitForQuit();
     }
     else
 	return -1;
