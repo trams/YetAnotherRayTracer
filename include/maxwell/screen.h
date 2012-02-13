@@ -5,15 +5,15 @@
 #include <SDL/SDL.h>
 #include <string>
 
-class Screen
+class SDLScreen
 {
 private:
     SDL_Surface* m_screen;
 public:
     class RuntimeError {};
 
-    Screen(int width, int height);
-    ~Screen();
+    SDLScreen(int width, int height);
+    ~SDLScreen();
 
     void SetPixel(int x, int y, Color color);
     void SetCaption(const std::string caption);

@@ -10,7 +10,7 @@ private:
     static const int Width = 800;
     static const int Height = 600;
 
-    Screen m_screen;
+    SDLScreen m_screen;
     Scene m_scene;
     Color m_image[Width][Height];
     int m_progress;
