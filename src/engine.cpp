@@ -7,35 +7,41 @@
 void findNearsetIntersection(const Scene& scene, const Ray ray,
                             Primitive const* * primitive, double* distance, int* intersectionType)
 {
-    *primitive = NULL;
-    double d = 0;
-    double minDistance = 0;
-    int code = 0;
+    Scene::ConstIterator nearestPrimitive = scene.End();
+    IntersectionPoint nearestIntersection;
 
     for (Scene::ConstIterator it = scene.Begin(); it != scene.End(); it++)
     {
-        const Primitive* p = (*it);
+	IntersectionPoint intersection = (*it)->getIntersection(ray);
 
-        int someCode = p->GetIntersection(ray, &d);
-        if (someCode != 0)
+        if (!intersection.isNull())
         {
-            if ((*primitive == NULL) || (d < minDistance))
+	    double distance = intersection.getDistanceFromOrigin(ray);
+	    double minDistance = nearestIntersection.getDistanceFromOrigin(ray);
+            if ((nearestPrimitive == scene.End()) || (distance < minDistance))
             {
-                minDistance = d;
-                *primitive = p;
-                code = someCode;
-            }
+		nearestIntersection = intersection;
+                nearestPrimitive = it;
+             }
         }
     }
 
     if (distance != NULL)
     {
-        *distance = minDistance;
+        *distance = nearestIntersection.getDistanceFromOrigin(ray);
     }
 
     if (intersectionType != NULL)
     {
-        *intersectionType = code;
+        *intersectionType = nearestIntersection.m_intersectionType;
+    }
+    if (nearestPrimitive == scene.End())
+    {
+	*primitive = NULL;
+    }
+    else
+    {
+        *primitive = (*nearestPrimitive);
     }
 }
 

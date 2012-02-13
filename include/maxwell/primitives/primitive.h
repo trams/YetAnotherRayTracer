@@ -14,6 +14,21 @@ struct IntersectionPoint
 {
     int m_intersectionType;
     Vector3 m_point;
+
+    IntersectionPoint():
+        m_intersectionType(0),
+        m_point(0.0, 0.0, 0.0)
+    {}
+
+    bool isNull() const
+    {
+	return (m_intersectionType == DontIntersect);
+    }
+
+    double getDistanceFromOrigin(const Ray& ray) const
+    {
+	return (m_point - ray.GetOrigin()).Length();
+    }
 };
 
 class Primitive
