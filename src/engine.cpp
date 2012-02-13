@@ -167,7 +167,7 @@ Color trace(const Scene& scene, Ray ray, int depth)
     return color;
 }
 
-Engine::Engine(SDLScreen& screen)
+Engine::Engine(Screen& screen)
     :m_screen(screen)
 {
 }

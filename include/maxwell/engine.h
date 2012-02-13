@@ -10,7 +10,7 @@ public:
     static const int Width = 800;
     static const int Height = 600;
 private:
-    SDLScreen& m_screen;
+    Screen& m_screen;
     Scene m_scene;
     Color m_image[Width][Height];
     int m_progress;
@@ -20,7 +20,7 @@ public:
     void Draw();
     void WaitForQuit();
 
-    Engine(SDLScreen& screen);
+    Engine(Screen& screen);
     ~Engine();
 };
 
