@@ -19,10 +19,6 @@ target_link_libraries(maxwell
     SDL
     )
 
-add_executable(render main.cpp)
-target_link_libraries(render maxwell)
-
 set_target_properties(maxwell PROPERTIES SOVERSION 0 VERSION 0.0)
 
 install(TARGETS maxwell LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
-install(TARGETS render DESTINATION bin)

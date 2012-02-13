@@ -9,7 +9,7 @@ include/maxwell/config.h
 Makefile
 
 bin/cli_render
-src/render
+bin/render
 tests/utest
 
 *~
