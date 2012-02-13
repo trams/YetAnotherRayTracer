@@ -1,6 +1,6 @@
 #include <maxwell/primitives/illuminative.h>
 #include <maxwell/engine.h>
-#include <SDL/SDL.h>
+
 #include <string>
 #include <sstream>
 
@@ -228,18 +228,7 @@ void Engine::Draw()
 
 void Engine::WaitForQuit()
 {
-    bool quit = false;
-    SDL_Event event;
-    while (not quit)
-    {
-        while (SDL_PollEvent(&event))
-        {
-            if (event.type == SDL_QUIT)
-            {
-                quit = true;
-            }
-        }
-    }
+    m_screen.waitForExit();
 }
 
 Engine::~Engine()

@@ -24,6 +24,7 @@ public:
     void SetPixel(int x, int y, const Color& color);
     void SetCaption(const std::string& caption);
     void Flip();
+    void waitForExit();
 private:
     std::vector<PixelWithColor> m_textScreen;
 };

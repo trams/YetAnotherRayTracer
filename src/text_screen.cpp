@@ -19,3 +19,8 @@ void TextScreen::Flip()
 	std::cout << it->x << '\t' << it->y << '\t' << it->color << std::endl;
     }
 }
+
+void TextScreen::waitForExit()
+{
+    //do nothing
+}

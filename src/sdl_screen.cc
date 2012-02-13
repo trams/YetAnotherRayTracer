@@ -42,3 +42,19 @@ void SDLScreen::SetCaption(const std::string& caption)
 {
     SDL_WM_SetCaption(caption.c_str(), NULL);
 }
+
+void SDLScreen::waitForExit()
+{
+    bool quit = false;
+    SDL_Event event;
+    while (not quit)
+    {
+        while (SDL_PollEvent(&event))
+        {
+            if (event.type == SDL_QUIT)
+            {
+                quit = true;
+            }
+        }
+    }
+}

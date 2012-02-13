@@ -18,6 +18,7 @@ public:
     virtual void SetPixel(int x, int y, const Color& color);
     virtual void SetCaption(const std::string& caption);
     virtual void Flip();
+    virtual void waitForExit();
 };
 
 #endif
