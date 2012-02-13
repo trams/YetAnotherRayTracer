@@ -5,7 +5,15 @@
 #include <SDL/SDL.h>
 #include <string>
 
-class SDLScreen
+class Screen
+{
+public:
+    virtual void SetPixel(int x, int y, const Color& color) = 0;
+    virtual void SetCaption(const std::string& caption) = 0;
+    virtual void Flip() = 0;
+};
+
+class SDLScreen : public Screen
 {
 private:
     SDL_Surface* m_screen;
@@ -15,8 +23,8 @@ public:
     SDLScreen(int width, int height);
     ~SDLScreen();
 
-    void SetPixel(int x, int y, Color color);
-    void SetCaption(const std::string caption);
+    void SetPixel(int x, int y, const Color& color);
+    void SetCaption(const std::string& caption);
     void Flip();
 };
 

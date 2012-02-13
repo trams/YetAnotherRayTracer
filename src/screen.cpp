@@ -24,7 +24,7 @@ SDLScreen::~SDLScreen()
     SDL_Quit();
 }
 
-void SDLScreen::SetPixel(int x, int y, Color color)
+void SDLScreen::SetPixel(int x, int y, const Color& color)
 {
     int num = x + y*m_screen->clip_rect.w;
     Uint32 * pixel = (Uint32*)m_screen->pixels + num;
@@ -37,7 +37,7 @@ void SDLScreen::Flip()
       throw RuntimeError();
 }
 
-void SDLScreen::SetCaption(const std::string caption)
+void SDLScreen::SetCaption(const std::string& caption)
 {
     SDL_WM_SetCaption(caption.c_str(), NULL);
 }
