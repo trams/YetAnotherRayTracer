@@ -12,7 +12,7 @@ public:
     Vector3 GetOrigin() const { return m_origin; }
     Vector3 GetDirection() const { return m_direction; }
 
-    Vector3 GetPoint(double distance)
+    Vector3 GetPoint(double distance) const
     {
         return (m_origin + m_direction*distance);
     }

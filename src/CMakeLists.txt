@@ -5,6 +5,7 @@ add_library(maxwell SHARED
     engine.cpp
     scene.cpp
     screen.cpp
+    primitives/primitive.cpp
     primitives/ball.cpp
     primitives/illuminative.cpp
     primitives/parallelogram.cpp

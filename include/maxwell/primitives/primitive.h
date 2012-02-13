@@ -10,6 +10,12 @@ static const int DontIntersect = 0;
 static const int IntersectOutside = 1;
 static const int IntersectInside = -1;
 
+struct IntersectionPoint
+{
+    int m_intersectionType;
+    Vector3 m_point;
+};
+
 class Primitive
 {
 protected:
@@ -18,6 +24,8 @@ protected:
     const std::string m_name;
 public:
     virtual int GetIntersection(Ray r, double* distance) const = 0;
+    virtual IntersectionPoint getIntersection(const Ray& ray) const;
+
     virtual Vector3 GetNormal(Vector3 point) const = 0;
 
     virtual Material GetMaterial() const
