@@ -8,14 +8,9 @@ TEST_CASE("scene/find_nearest_intersection/empty_scene", "")
     Scene scene;
     Ray ray(Vector3(), Vector3(0.0, 0.0, 5.0));
 
-    Primitive const * nearestPrimitive;
-    double distance;
-    int intersectionType;
+    NearestIntersection result = findNearestIntersection(scene, ray);
 
-    findNearsetIntersection(scene, ray, &nearestPrimitive,
-			    &distance, &intersectionType);
-
-    REQUIRE(intersectionType == DontIntersect);
+    REQUIRE(result.intersection.isNull());
 }
 
 TEST_CASE("scene/find_nearest_intersection/one_primitive/outside", "")
@@ -27,16 +22,11 @@ TEST_CASE("scene/find_nearest_intersection/one_primitive/outside", "")
 
     Ray ray(Vector3(), Vector3(0.0, 0.0, 5.0).Normalize());
 
-    Primitive const * nearestPrimitive;
-    double distance;
-    int intersectionType;
+    NearestIntersection result = findNearestIntersection(scene, ray);
 
-    findNearsetIntersection(scene, ray, &nearestPrimitive,
-			    &distance, &intersectionType);
-
-    REQUIRE(intersectionType == IntersectOutside);
-    REQUIRE(nearestPrimitive == &ball);
-    REQUIRE(distance == Approx(5.0));
+    REQUIRE(result.intersection.m_intersectionType == IntersectOutside);
+    REQUIRE(result.primitive == &ball);
+    REQUIRE(result.intersection.getDistance() == Approx(5.0));
 }
 
 TEST_CASE("scene/find_nearest_intersection/one_primitive/inside", "")
@@ -48,16 +38,11 @@ TEST_CASE("scene/find_nearest_intersection/one_primitive/inside", "")
 
     Ray ray(Vector3(), Vector3(0.0, 0.0, 5.0).Normalize());
 
-    Primitive const * nearestPrimitive;
-    double distance;
-    int intersectionType;
+    NearestIntersection result = findNearestIntersection(scene, ray);
 
-    findNearsetIntersection(scene, ray, &nearestPrimitive,
-			    &distance, &intersectionType);
-
-    REQUIRE(intersectionType == IntersectInside);
-    REQUIRE(nearestPrimitive == &ball);
-    REQUIRE(distance == Approx(1.0));
+    REQUIRE(result.intersection.m_intersectionType == IntersectInside);
+    REQUIRE(result.primitive == &ball);
+    REQUIRE(result.intersection.getDistance() == Approx(1.0));
 }
 
 TEST_CASE("scene/find_nearest_intersection/two_primives", "")
@@ -71,14 +56,9 @@ TEST_CASE("scene/find_nearest_intersection/two_primives", "")
 
     Ray ray(Vector3(), Vector3(0.0, 0.0, 5.0).Normalize());
 
-    Primitive const * nearestPrimitive;
-    double distance;
-    int intersectionType;
+    NearestIntersection result = findNearestIntersection(scene, ray);
 
-    findNearsetIntersection(scene, ray, &nearestPrimitive,
-			    &distance, &intersectionType);
-
-    REQUIRE(intersectionType == IntersectOutside);
-    REQUIRE(nearestPrimitive == &ball2);
-    REQUIRE(distance == Approx(4.0));
+    REQUIRE(result.intersection.m_intersectionType == IntersectOutside);
+    REQUIRE(result.primitive == &ball2);
+    REQUIRE(result.intersection.getDistance() == Approx(4.0));
 }

@@ -4,27 +4,18 @@
 #include <string>
 #include <sstream>
 
-struct NearestIntersection
-{
-    const Primitive* primitive;
-
-    RayIntersectionPoint intersection;
-};
-
 NearestIntersection findNearestIntersection(const Scene& scene, const Ray& ray)
 {
     NearestIntersection result;
-    result.primitive = NULL;
 
     for (Scene::ConstIterator it = scene.Begin(); it != scene.End(); it++)
     {
+	const RayIntersectionPoint& bestIntersection = result.intersection;
 	RayIntersectionPoint intersection = (*it)->getIntersection(ray);
 
         if (!intersection.isNull())
         {
-	    double distance = intersection.getDistance();
-	    double minDistance = result.intersection.getDistance();
-            if ((result.primitive == NULL) || (distance < minDistance))
+            if ((result.isNull()) || intersection.getDistance() < bestIntersection.getDistance())
             {
 		result.intersection = intersection;
                 result.primitive = (*it);

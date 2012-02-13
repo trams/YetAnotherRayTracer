@@ -24,7 +24,23 @@ public:
     ~Engine();
 };
 
-void findNearsetIntersection(const Scene& scene, const Ray ray,
-			     Primitive const* * primitive, double* distance, int* intersectionType);
+struct NearestIntersection
+{
+    const Primitive* primitive;
+
+    RayIntersectionPoint intersection;
+
+    NearestIntersection():
+        primitive(NULL),
+        intersection()
+    {}
+
+    bool isNull() const
+    {
+	return intersection.isNull();
+    }
+};
+
+NearestIntersection findNearestIntersection(const Scene& scene, const Ray& ray);
 
 #endif /*ENGINE_H_*/
