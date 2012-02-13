@@ -167,8 +167,8 @@ Color trace(const Scene& scene, Ray ray, int depth)
     return color;
 }
 
-Engine::Engine()
-    :m_screen(Width, Height)
+Engine::Engine(SDLScreen& screen)
+    :m_screen(screen)
 {
 }
 
