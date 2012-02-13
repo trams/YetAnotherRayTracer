@@ -8,6 +8,7 @@ include/maxwell/config.h
 
 Makefile
 
+bin/cli_render
 src/render
 tests/utest
 

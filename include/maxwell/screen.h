@@ -23,9 +23,9 @@ public:
     SDLScreen(int width, int height);
     ~SDLScreen();
 
-    void SetPixel(int x, int y, const Color& color);
-    void SetCaption(const std::string& caption);
-    void Flip();
+    virtual void SetPixel(int x, int y, const Color& color);
+    virtual void SetCaption(const std::string& caption);
+    virtual void Flip();
 };
 
 #endif /*SCREEN_H_*/
