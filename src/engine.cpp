@@ -4,11 +4,17 @@
 #include <string>
 #include <sstream>
 
-void findNearsetIntersection(const Scene& scene, const Ray ray,
-                            Primitive const* * primitive, double* distance, int* intersectionType)
+struct NearestIntersection
 {
-    Scene::ConstIterator nearestPrimitive = scene.End();
-    IntersectionPoint nearestIntersection;
+    const Primitive* primitive;
+
+    IntersectionPoint intersection;
+};
+
+NearestIntersection findNearestIntersection(const Scene& scene, const Ray& ray)
+{
+    NearestIntersection result;
+    result.primitive = NULL;
 
     for (Scene::ConstIterator it = scene.Begin(); it != scene.End(); it++)
     {
@@ -17,31 +23,38 @@ void findNearsetIntersection(const Scene& scene, const Ray ray,
         if (!intersection.isNull())
         {
 	    double distance = intersection.getDistanceFromOrigin(ray);
-	    double minDistance = nearestIntersection.getDistanceFromOrigin(ray);
-            if ((nearestPrimitive == scene.End()) || (distance < minDistance))
+	    double minDistance = result.intersection.getDistanceFromOrigin(ray);
+            if ((result.primitive == NULL) || (distance < minDistance))
             {
-		nearestIntersection = intersection;
-                nearestPrimitive = it;
+		result.intersection = intersection;
+                result.primitive = (*it);
              }
         }
     }
+    return result;
+}
+
+void findNearsetIntersection(const Scene& scene, const Ray ray,
+                            Primitive const* * primitive, double* distance, int* intersectionType)
+{
+    NearestIntersection result = findNearestIntersection(scene, ray);
 
     if (distance != NULL)
     {
-        *distance = nearestIntersection.getDistanceFromOrigin(ray);
+        *distance = result.intersection.getDistanceFromOrigin(ray);
     }
 
     if (intersectionType != NULL)
     {
-        *intersectionType = nearestIntersection.m_intersectionType;
+        *intersectionType = result.intersection.m_intersectionType;
     }
-    if (nearestPrimitive == scene.End())
+    if (result.primitive == NULL)
     {
 	*primitive = NULL;
     }
     else
     {
-        *primitive = (*nearestPrimitive);
+        *primitive = result.primitive;
     }
 }
 
